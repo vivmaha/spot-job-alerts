@@ -17,7 +17,7 @@ export async function getCurrentJobs(): Promise<SpotJobSearch> {
     ),
   };
 
-  console.log(`Found ${jobs.result.length} EM and Remote AMER jobs.`);
+  console.log(`Found ${filteredJobs.result.length} EM and Remote AMER jobs.`);
 
   return filteredJobs;
 }

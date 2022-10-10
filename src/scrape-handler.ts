@@ -1,5 +1,6 @@
 import { getCurrentJobs } from "./current-jobs";
 import { getPreviousJobs, setPreviousJobs } from "./previous-jobs";
+import { sendAlert } from "./send-alert";
 
 function getNewJobs(
   previous: SpotJobSearch,

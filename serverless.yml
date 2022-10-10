@@ -1,21 +1,33 @@
 service: spot-job-alerts
 
+plugins:
+  - serverless-esbuild
+
 provider:
   name: aws
   runtime: nodejs16.x
-
-environment:
-  DEFAULT_BUCKET_NAME: !Ref DefaultBucket
-
-iam:
-  role:
-    statements:
-      - Effect: Allow
-        Action:
-          - s3:GetObject
-          - s3:PutObject
-          - s3:ListBucket
-        Resource: !Sub "{DefaultBucket.Arn}/*"
+  region: us-west-2
+  environment:
+    DEFAULT_BUCKET_NAME: !Ref DefaultBucket
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - s3:GetObject
+            - s3:PutObject
+            - s3:ListBucket
+          Resource:
+            - !GetAtt "DefaultBucket.Arn"
+            - !Join
+              - "/"
+              - - !GetAtt "DefaultBucket.Arn"
+                - "*"
+        - Effect: Allow
+          Action:
+            - ses:SendEmail
+          Resource:
+            - "*"
 
 functions:
   scrape:

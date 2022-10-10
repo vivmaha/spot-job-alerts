@@ -9,7 +9,7 @@ function getMessage(newJobs: SpotJob[]) {
   message += `There are ${newJobs.length} new job(s)\n\n\n`;
   for (const job of newJobs) {
     const url = ``;
-    message += `${job.text}\n${url}]\n`;
+    message += `${job.text}\n${url}\n`;
     message += `https://www.lifeatspotify.com/jobs/${job.id}\n\n`;
   }
   message += `Good luck!\n`;
