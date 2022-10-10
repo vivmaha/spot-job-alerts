@@ -1,0 +1,28 @@
+service: spot-job-alerts
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+
+environment:
+  DEFAULT_BUCKET_NAME: !Ref DefaultBucket
+
+iam:
+  role:
+    statements:
+      - Effect: Allow
+        Action:
+          - s3:GetObject
+          - s3:PutObject
+          - s3:ListBucket
+        Resource: !Sub "{DefaultBucket.Arn}/*"
+
+functions:
+  scrape:
+    handler: src/scrape-handler.scrape
+    events:
+      - schedule: rate(1 day)
+resources:
+  Resources:
+    DefaultBucket:
+      Type: AWS::S3::Bucket
