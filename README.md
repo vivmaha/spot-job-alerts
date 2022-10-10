@@ -16,3 +16,13 @@ Stack:
 - Serverless Framework for IaC
 - Typescript
 - AWS (S3, Lambda, SES)
+
+TODO:
+
+- Detect when jobs response format is no longer compatible with our scraper and send an alert
+- Include job description in email
+- Include other companies
+- Nicer HTML formatting for email
+- Add ML detection for job requirement of prior management experience, and filter based on this
+- ESLint
+- Deployment via GitHub Actions
